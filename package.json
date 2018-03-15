@@ -1,9 +1,9 @@
 {
-  "name": "gulpfiles",
+  "name": "horizontal-scroll",
   "description": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ykob/gulpfile"
+    "url": "https://github.com/ykob/horizontal-scroll"
   },
   "private": false,
   "scripts": {
@@ -52,6 +52,7 @@
     "yargs": "^10.1.1"
   },
   "dependencies": {
+    "gl-matrix": "^2.4.0",
     "js-util": "git://github.com/ykob/js-util.git",
     "jstransformer-markdown-it": "^2.0.0"
   }

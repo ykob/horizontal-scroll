@@ -1,12 +1,12 @@
-const pageId = document.querySelector('.l-page').getAttribute('data-page-id');
+const ScrollManager = require('./modules/smooth_scroll_manager/SmoothScrollManager').default;
+const Pjax = require('./modules/pjax/Pjax').default;
+
+const scrollManager = new ScrollManager();
+const pjax = new Pjax({
+  scrollManager: scrollManager
+});
 
 const init = () => {
-  require ('./init/common.js').default();
-  switch (pageId) {
-    case 'index':
-      require ('./init/index.js').default();
-      break;
-    default:
-  }
+  pjax.onLoad();
 }
 init();
