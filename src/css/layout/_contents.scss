@@ -1,13 +1,14 @@
 .l-contents {
-  color: $color-text-basic;
-  @include fontSizeAll(13, 13, 12);
-  @include l-pc {
-    line-height: (32 / 13);
-  }
-  @include l-tablet {
-    line-height: (32 / 13);
-  }
-  @include l-mobile {
-    line-height: (48 / 24);
+  width: 100%;
+  line-height: 2;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  backface-visibility:hidden;
+  @include fontSizeAll(14, 14, 12);
+  letter-spacing: 0.06em;
+  &.is-fixed {
+    position: fixed;
+    top: 0; right: 0; left: 0;
   }
 }
