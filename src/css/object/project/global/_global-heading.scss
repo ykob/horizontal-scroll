@@ -1,0 +1,8 @@
+.p-global-heading {
+  position: absolute;
+  top: 0;
+  left: (3 / 60) * 100vw;
+  margin-top: (2.5 / 60) * 100vw;
+  margin-bottom: 0;
+  @include fontSizeAll(32, 32, 24);
+}
