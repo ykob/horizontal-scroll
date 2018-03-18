@@ -17,12 +17,14 @@ const consoleSignature = new ConsoleSignature('this content is rendered with scr
 
 const CLASSNAME_DUMMY_SCROLL = 'js-dummy-scroll';
 const CLASSNAME_CONTENTS = 'js-contents';
+const CLASSNAME_CONTENTS_IN = 'js-contents-in';
 
 export default class SmoothScrollManager {
   constructor() {
     this.elm = {
       dummyScroll: document.querySelector(`.${CLASSNAME_DUMMY_SCROLL}`),
       contents: null,
+      contentsIn: null,
     };
     this.scrollItems = new ScrollItems(this);
     this.scrollTop = 0;
@@ -58,6 +60,7 @@ export default class SmoothScrollManager {
 
     // スムーススクロールさせる対象のラッパーDOMを取得
     this.elm.contents = document.querySelector(`.${CLASSNAME_CONTENTS}`);
+    this.elm.contentsIn = document.querySelector(`.${CLASSNAME_CONTENTS_IN}`);
 
     setTimeout(() => {
       // 初期スクロール値を取得する。(pjax遷移の際は不要)
@@ -81,7 +84,7 @@ export default class SmoothScrollManager {
         this.hookes.contents.anchor[1] = this.hookes.contents.velocity[1] = this.scrollTop * -1;
         this.hookes.parallax.anchor[1] = this.hookes.parallax.velocity[1] = this.scrollTop + this.resolution.y * 0.5;
       }
-      this.elm.contents.style.transform = `translate3D(0, ${this.hookes.contents.velocity[1]}px, 0)`;
+      this.elm.contents.style.transform = `translate3D(${this.hookes.contents.velocity[1]}px, 0, 0)`;
 
       // Scroll Manager の動作を開始する
       this.isWorkingScroll = true;
@@ -127,7 +130,7 @@ export default class SmoothScrollManager {
       this.elm.dummyScroll.style.height = `0`;
     } else {
       this.elm.contents.classList.add('is-fixed');
-      this.elm.dummyScroll.style.height = `${this.elm.contents.clientHeight}px`;
+      this.elm.dummyScroll.style.height = `${this.elm.contentsIn.clientWidth}px`;
     }
     this.render();
   }
@@ -221,7 +224,7 @@ export default class SmoothScrollManager {
     // 本文全体のラッパー(contents)をレンダリング
     if (this.isWorkingTransform === true) {
       const y = Math.floor(this.hookes.contents.velocity[1] * 1000) / 1000;
-      this.elm.contents.style.transform = `translate3D(0, ${y}px, 0)`;
+      this.elm.contents.style.transform = `translate3D(${y}px, 0, 0)`;
     }
     // Hookesオブジェクトをレンダリング
     for (var key in this.hookes) {
